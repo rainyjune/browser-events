@@ -14,6 +14,8 @@ window.onload = function() {
 
   var arr = [div1, div2, testp];
 
+  var eventHandlersForIE = [];
+
   var captureListener = function(e) {
     writelog('capturing phase: #' + this.id);
   };
@@ -26,7 +28,10 @@ window.onload = function() {
     var thisElement = arr[i];
 
     addEvent(thisElement, 'click', captureListener, true);
-    addEvent(thisElement, 'click', bubbleListener, false);
+    var thisHandler = addEvent(thisElement, 'click', bubbleListener, false);
+    if (thisHandler) {
+      eventHandlersForIE[i] = thisHandler;
+    }
   }
 
   id('isCaptureSupported').innerText = document.addEventListener ? '是' : '否';
@@ -81,9 +86,12 @@ window.onload = function() {
     for (var i = 0, len = arr.length; i < len; i++) {
       var thisElement = arr[i];
       if (status === 'on') {
-        removeEvent(thisElement, 'click', bubbleListener, false);
+        removeEvent(thisElement, 'click', eventHandlersForIE[i] || bubbleListener, false);
       } else {
-        addEvent(thisElement, 'click', bubbleListener, false);
+        var thisHandler = addEvent(thisElement, 'click', bubbleListener, false);
+        if (thisHandler) {
+          eventHandlersForIE[i] = thisHandler;
+        }
       }
     }
   });
