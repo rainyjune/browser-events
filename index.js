@@ -33,6 +33,8 @@ window.onload = function() {
   if (document.addEventListener) {
     captureToggleBtn.disabled = false;
     captureToggleBtn.innerText = '为捕获阶段删除监听器';
+  } else {
+    captureToggleStatus.innerText = '不支持事件捕获';
   }
 
   function id(str) {
