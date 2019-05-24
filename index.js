@@ -15,12 +15,10 @@ window.onload = function() {
   var arr = [div1, div2, testp];
 
   var captureListener = function(e) {
-    console.log('capturing phase: #' + this.id);
     writelog('capturing phase: #' + this.id);
   };
 
   var bubbleListener = function(e) {
-    console.log('bubbling phase: #' + this.id);
     writelog('bubbling phase: #' + this.id);
   };
 
