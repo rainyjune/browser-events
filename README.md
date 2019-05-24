@@ -91,7 +91,7 @@ _.addEvent(document, 'click', function(e) {
   // 用户点击的元素的标签，转成小写便于对比
   var tagName = target.tagName.toLowerCase();
   // 如果触发事件的元素是 body 或者 html，停止处理
-  if(tagName.toLowerCase() === 'body' || tagName.toLowerCase() === 'html'){
+  if(tagName === 'body' || tagName === 'html'){
     return false;
   }
   // 如果不是有效的元素，停止处理
