@@ -11,10 +11,38 @@
     #div1
     <div id="div2">
       #div2
-      <p id="testp">#testp</p>
+      <p id="testp">#testp <span>a span tag</span></p>
       <p>Visit <a href="https://fast.com" id="testlink">our site</a>.</p>
     </div>
   </div>
+
+  <table class="demo">
+    <thead>
+      <tr>
+        <th width="">阶段</th>
+        <th>是否支持</th>
+        <th width="50%">状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>捕获</td>
+        <td><span id="isCaptureSupported">未知</span></td>
+        <td><span id="captureToggleStatus">捕获阶段的监听器已经注册</span></td>
+        <td><button disabled="disabled" id="captureToggleBtn" data-status="on">为捕获阶段删除监听器</button></td>
+      </tr>
+      <tr>
+        <td>冒泡</td>
+        <td>是</td>
+        <td><span id="bubbleToggleStatus">冒泡阶段的监听器已经注册</span></td>
+        <td><button id="bubbleToggleBtn" data-status="on">为冒泡阶段删除监听器</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>日志：</p>
+  <textarea id="logarea"></textarea>
+  <p><button id="clearlog">清除日志</button></p>
   <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

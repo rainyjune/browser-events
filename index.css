@@ -11,3 +11,26 @@
 #div2 p {
   background-color: gray;
 }
+
+#div2 p span{
+  padding: 0 5px;
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+table.demo {
+  table-layout: fixed;
+  border: 1px solid;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.demo td,
+.demo th {
+  border: 1px solid;
+}
+
+#logarea {
+  width: 500px;
+  height: 300px;
+}
