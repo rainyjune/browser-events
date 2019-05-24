@@ -73,11 +73,13 @@ element1.onclick = doSomething2;
 借助于浏览器默认的冒泡机制，我们可以实现事件的集中管理和事件委托。具体做法是把事件监听器设置到 document， body 或者目标元素的上级元素上，当触发某一事件时事件冒泡最终会触发我们的事件监听器函数。神策分析 JavaScript SDK 中也有应用：
 
 ```
+// 利用冒泡原理在 document 上监听 click 事件
 _.addEvent(document, 'click', function(e) {
   var ev = e || window.event;
   if(!ev){
     return false;
   }        
+  // 得到用户点击的元素
   var target = ev.target || ev.srcElement;
   if(typeof target !== 'object'){
     return false;
@@ -85,13 +87,17 @@ _.addEvent(document, 'click', function(e) {
   if(typeof target.tagName !== 'string'){
     return false;
   }
+  // 用户点击的元素的标签，转成小写便于对比
   var tagName = target.tagName.toLowerCase();
+  // 如果触发事件的元素是 body 或者 html，停止处理
   if(tagName.toLowerCase() === 'body' || tagName.toLowerCase() === 'html'){
     return false;
   }
+  // 如果不是有效的元素，停止处理
   if(!target || !target.parentNode || !target.parentNode.children){
     return false;
   }
+  // 触发点击事件的父元素标签名，转成小写便于对比
   var parent_ele = target.parentNode.tagName.toLowerCase();
   if(parent_ele === 'a' || parent_ele === 'button'){
     that.start(ev, target.parentNode, target.parentNode.tagName.toLowerCase());
