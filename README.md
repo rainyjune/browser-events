@@ -84,6 +84,7 @@ _.addEvent(document, 'click', function(e) {
   if(typeof target !== 'object'){
     return false;
   }
+  // 确保 tartget 有 tagName 属性
   if(typeof target.tagName !== 'string'){
     return false;
   }
