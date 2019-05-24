@@ -10,7 +10,8 @@ window.onload = function() {
       captureToggleStatus = id('captureToggleStatus'),
       bubbleToggleStatus = id('bubbleToggleStatus'),
       logarea = id('logarea'),
-      clearlog = id('clearlog');
+      clearlog = id('clearlog'),
+      div2cancelbubble = id('div2cancelbubble');
 
   var arr = [div1, div2, testp];
 
@@ -95,6 +96,23 @@ window.onload = function() {
       }
     }
   });
+
+  var cancelHandler = function(e) {
+    e = fixEvent(e);
+    e.stopPropagation();
+  }
+  var cancelBubbleHandler = null;
+  addEvent(div2cancelbubble, 'click', function(e) {
+    writelog('阻止 #div2 事件流');
+
+    cancelBubbleHandler = addEvent(div2, 'click', cancelHandler, false);
+  }, false);
+
+  addEvent(id('div2allowbubble'), 'click', function() {
+    writelog('允许 #div2 事件流');
+
+    removeEvent(div2, 'click', cancelBubbleHandler || cancelHandler, false);
+  }, false);
 
   clearlog.onclick = function() {
     logarea.value = '';
