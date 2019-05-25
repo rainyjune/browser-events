@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>test</title>
+</head>
+<body>
+  <p>客户现状：页面上有一个链接，点击后会在控制台输出 '2'。<br/>
+  我们的要求：在控制台编写代码，效果是点击链接时在控制台先输出 '1'，然后输出 '2'。<br/>
+  代码要求：给 document 绑定事件</p>
+  <a href="#" id="testa">baidu.com</a>
+  <script type="text/javascript">
+document.getElementById('testa').addEventListener('click', function (e) {
+  console.log('2');
+});
+  </script>
+</body>
+</html>
