@@ -11,7 +11,9 @@ window.onload = function() {
       bubbleToggleStatus = id('bubbleToggleStatus'),
       logarea = id('logarea'),
       clearlog = id('clearlog'),
-      div2cancelbubble = id('div2cancelbubble');
+      div2cancelbubble = id('div2cancelbubble'),
+      div2cancelCapture = id('div2cancelCapture'),
+      div2allowCapture = id('div2allowCapture');
 
   var arr = [div1, div2, testp];
 
@@ -23,6 +25,10 @@ window.onload = function() {
 
   var bubbleListener = function(e) {
     writelog('bubbling phase: #' + this.id);
+  };
+
+  var stopCaptureHandler = function(e) {
+    e.stopPropagation();
   };
 
   for (var i = 0, len = arr.length; i < len; i++) {
@@ -39,6 +45,9 @@ window.onload = function() {
   if (document.addEventListener) {
     captureToggleBtn.disabled = false;
     captureToggleBtn.innerText = '为捕获阶段删除监听器';
+
+    div2cancelCapture.disabled = false;
+    div2allowCapture.disabled = false;
   } else {
     captureToggleStatus.innerText = '不支持事件捕获';
   }
@@ -117,6 +126,14 @@ window.onload = function() {
   clearlog.onclick = function() {
     logarea.value = '';
   };
+
+  div2cancelCapture.onclick = function() {
+    div2.addEventListener('click', stopCaptureHandler, true);
+  };
+
+  div2allowCapture.onclick = function() {
+    div2.removeEventListener('click', stopCaptureHandler, true);
+  }
 
   function addEvent(target, type, listener, useCapture) {
     if (document.addEventListener) {
